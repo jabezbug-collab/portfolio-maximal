@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAVID JABEZ.M | THE E-COM ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FACC15;
+            --grey: #E5E5E5;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+        }
+        .hero-text {
+            font-size: clamp(5rem, 18vw, 15rem);
+            line-height: 0.8;
+            text-shadow: 10px 10px 0px var(--yellow);
+            transform: skewY(-2deg);
+        }
+        .btn-industrial {
+            background: var(--black);
+            color: var(--white);
+            padding: 24px 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 8px solid var(--black);
+            box-shadow: 10px 10px 0px var(--yellow);
+        }
+        .btn-industrial:hover {
+            background: var(--yellow);
+            color: var(--black);
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: -10px -10px 0px var(--black);
+        }
+        .project-card {
+            border: 8px solid var(--black);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            background: var(--white);
+            position: relative;
+            opacity: 1;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 30px 30px 0px var(--yellow);
+            z-index: 10;
+        }
+        .project-card h3 {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .project-card:hover h3 {
+            transform: skewX(-10deg) scale(1.1);
+            color: var(--yellow);
+        }
+        .project-card p {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .project-card:hover p {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+        .project-card a {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .project-card:hover a {
+            background: var(--yellow);
+            color: var(--black);
+            transform: scale(1.1);
+        }
+        .marquee-container {
+            background: var(--yellow);
+            border-top: 8px solid var(--black);
+            border-bottom: 8px solid var(--black);
+            overflow: hidden;
+            padding: 30px 0;
+            transform: rotate(-2deg);
+            width: 110%;
+            margin-left: -5%;
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .big-number {
+            font-size: clamp(6rem, 15vw, 18rem);
+            font-weight: 900;
+            font-family: 'Space Grotesk';
+            line-height: 0.8;
+        }
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: var(--yellow);
+            border: 4px solid var(--black);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="cursor-follower" id="cursor"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-8 flex justify-between items-baseline mix-blend-difference text-white">
+        <div class="font-black text-2xl uppercase tracking-tighter">David Jabez.M</div>
+        <div class="flex gap-8 font-black uppercase text-sm">
+            <a href="#work" class="hover:underline underline-offset-4">Work</a>
+            <a href="#about" class="hover:underline underline-offset-4">About</a>
+            <a href="mailto:jabeztechw@gmail.com" class="bg-white text-black px-4 py-1">Hire Me</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="min-h-screen px-6 flex flex-col justify-center relative overflow-hidden bg-white">
+            <div class="absolute top-1/4 -right-20 opacity-10 pointer-events-none select-none rotate-12">
+                <h2 class="text-[30rem] font-black leading-none">CONVERT</h2>
+            </div>
+            <div class="absolute -bottom-20 -left-20 opacity-10 pointer-events-none select-none -rotate-12">
+                <h2 class="text-[30rem] font-black leading-none">SCALE</h2>
+            </div>
+            <div class="z-10">
+                <h1 class="hero-text font-black mb-12">
+                    STOREFRONT<br>ARCHITECT
+                </h1>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                    <p class="text-3xl md:text-5xl max-w-4xl font-bold leading-tight tracking-tight">
+                        I engineer <span class="bg-yellow-400 px-2 border-4 border-black">digital revenue streams</span> with brutal precision and commercial aggression.
+                    </p>
+                    <a href="mailto:jabeztechw@gmail.com" class="btn-industrial text-2xl">
+                        LET'S WORK
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGGRESSIVE MARQUEE -->
+        <div class="marquee-container">
+            <div class="marquee-content text-black font-black uppercase text-4xl italic">
+                <span class="mx-10">High Conversion • Luxury E-com • UX Architecture • ROI Obsessed • </span>
+                <span class="mx-10">High Conversion • Luxury E-com • UX Architecture • ROI Obsessed • </span>
+                <span class="mx-10">High Conversion • Luxury E-com • UX Architecture • ROI Obsessed • </span>
+            </div>
+        </div>
+
+        <!-- BRUTAL STATS -->
+        <section class="section-gap px-6 grid grid-cols-1 md:grid-cols-3 gap-0 border-y-8 border-black">
+            <div class="p-12 border-r-0 md:border-r-8 border-black flex flex-col items-center text-center group hover:bg-yellow-400 transition-colors duration-300">
+                <div class="big-number" data-value="98">0</div>
+                <p class="text-3xl font-black uppercase mt-4">Satisfaction %</p>
+            </div>
+            <div class="p-12 border-r-0 md:border-r-8 border-black flex flex-col items-center text-center group hover:bg-yellow-400 transition-colors duration-300">
+                <div class="big-number" data-value="150">0</div>
+                <p class="text-3xl font-black uppercase mt-4">Stores Built</p>
+            </div>
+            <div class="p-12 flex flex-col items-center text-center group hover:bg-yellow-400 transition-colors duration-300">
+                <div class="big-number" data-value="22">0</div>
+                <p class="text-3xl font-black uppercase mt-4">Conv. Lift %</p>
+            </div>
+        </section>
+
+        <!-- WORK ARCHIVE -->
+        <section id="work" class="section-gap px-6 bg-black text-white">
+            <div class="flex justify-between items-end mb-32">
+                <h2 class="text-7xl md:text-[12rem] font-black leading-none">CASE<br>STUDIES</h2>
+                <div class="text-right pb-4">
+                    <p class="text-sm font-bold uppercase opacity-40 mb-2">Selected Archive</p>
+                    <p class="text-2xl font-black uppercase">2023 — 2026</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 01</span>
+                        <span class="font-bold opacity-50">2025</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">SMART NURSE</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md font-medium">Healthcare e-commerce optimization. Streamlining medical supply procurement for professionals.</p>
+                    <a href="https://smartnursev11.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 02</span>
+                        <span class="font-bold opacity-50">2024</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">JABEZ TEAMS</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Team management portal for digital agencies. Focused on high-efficiency task tracking.</p>
+                    <a href="https://jabezteams.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 03</span>
+                        <span class="font-bold opacity-50">2024</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">HAPPY FATHER</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Niche gift e-commerce site. Optimized for emotional triggers and fast checkout.</p>
+                    <a href="https://happyfather.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 04</span>
+                        <span class="font-bold opacity-50">2023</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">HAPPY MOTHER ANNIE</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Bespoke floral and gift shop. Implemented personalized gift-wrapping UX flow.</p>
+                    <a href="https://happymotherannie.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 05</span>
+                        <span class="font-bold opacity-50">2023</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">DHANVANTRI</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Ayurvedic health store. Balanced traditional values with modern e-com conversion patterns.</p>
+                    <a href="https://dhanvantri1.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 6 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 06</span>
+                        <span class="font-bold opacity-50">2023</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">DHANVANTRI LANDING</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">High-converting landing page for specific Ayurvedic product launches.</p>
+                    <a href="https://dhanvantri-landingpage.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 7 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 07</span>
+                        <span class="font-bold opacity-50">2023</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">WEBMAKERS</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Personal showcase of architectural design and frontend engineering capabilities.</p>
+                    <a href="https://webmakers-official.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+                <!-- Project 8 -->
+                <div class="project-card p-10 group cursor-pointer">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-black uppercase bg-yellow-400 text-black px-3 py-1">Case 08</span>
+                        <span class="font-bold opacity-50">2023</span>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black mb-8 group-hover:italic transition-all">B-DAY APPA</h3>
+                    <p class="text-xl opacity-60 mb-12 max-w-md">Custom interactive digital birthday experience with complex animations.</p>
+                    <a href="https://happybirthdayappa.pages.dev/" target="_blank" class="inline-block border-4 border-current px-8 py-4 font-black uppercase hover:bg-yellow-400 hover:text-black transition-all">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section-gap px-6 bg-stone-200 border-y-8 border-black">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="relative">
+                        <div class="aspect-square bg-black w-full h-full flex items-center justify-center text-white text-center p-12 transform -rotate-3 border-8 border-black">
+                            <p class="text-4xl font-black uppercase tracking-tighter leading-tight">
+                                "Conversion is the only metric that truly matters in design."
+                            </p>
+                        </div>
+                        <div class="absolute -bottom-8 -right-8 bg-yellow-400 p-6 font-black uppercase text-2xl border-4 border-black rotate-12">
+                            SINCE 2023
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-7xl font-black mb-8 leading-none">THE<br>ARCHITECT</h2>
+                    <p class="text-2xl font-bold mb-8 leading-tight">
+                        I don't just design websites; I engineer digital revenue streams. I combine high-end aesthetics with rigorous conversion data.
+                    </p>
+                    <div class="grid grid-cols-2 gap-12">
+                        <div>
+                            <h4 class="font-black uppercase text-yellow-600 mb-4">Core Stack</h4>
+                            <ul class="font-black uppercase text-lg space-y-2">
+                                <li>React / Next.js</li>
+                                <li>Tailwind CSS</li>
+                                <li>Shopify Plus</li>
+                                <li>Figma / Webflow</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-yellow-600 mb-4">Expertise</h4>
+                            <ul class="font-black uppercase text-lg space-y-2">
+                                <li>CRO Audit</li>
+                                <li>UX Strategy</li>
+                                <li>Visual Identity</li>
+                                <li>SaaS E-com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="section-gap px-6 text-center relative overflow-hidden bg-white">
+            <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none flex items-center justify-center">
+                <h2 class="text-[40rem] font-black leading-none italic">HIRE</h2>
+            </div>
+            <h2 class="text-8xl md:text-[15rem] font-black mb-12 relative z-10">LET'S<br>SCALE</h2>
+            <a href="mailto:jabeztechw@gmail.com" class="btn-industrial text-4xl px-20 py-12 relative z-10">
+                Contact David Now
+            </a>
+        </section>
+    </main>
+
+    <footer class="px-6 py-24 border-t-8 border-black flex flex-col md:flex-row justify-between items-center gap-12 bg-black text-white">
+        <div class="font-black uppercase text-5xl tracking-tighter">David Jabez.M</div>
+        <div class="flex flex-col items-center md:items-end gap-6">
+            <div class="flex gap-8 font-black uppercase text-lg">
+                <a href="mailto:jabeztechw@gmail.com" class="hover:text-yellow-400 transition-colors">Email</a>
+                <a href="https://www.instagram.com/webmakers123" target="_blank" class="hover:text-yellow-400 transition-colors">Instagram</a>
+                <a href="#" class="hover:text-yellow-400 transition-colors"></a>
+            </div>
+            <p class="opacity-40 text-xs uppercase tracking-widest">© 2026 Professional Web Design Services</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 20,
+                y: e.clientY - 20,
+                duration: 0.1
+            });
+        });
+
+        // Hero animations
+        gsap.from(".hero-text", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.2,
+            ease: "expo.out",
+            delay: 0.2
+        });
+
+        // Brutal Number Counters
+        const counters = document.querySelectorAll('.big-number');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-value');
+            ScrollTrigger.create({
+                trigger: counter,
+                onEnter: () => {
+                    let count = 0;
+                    const interval = setInterval(() => {
+                        count++;
+                        counter.innerText = count;
+                        if (count === target) clearInterval(interval);
+                    }, 20);
+                }
+            });
+        });
+
+        // Work items stagger with scale
+        gsap.to(".project-card", {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 95%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        // About section brutal slide
+        gsap.from("#about", {
+            opacity: 0,
+            x: -100,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 80%",
+            }
+        });
+    </script>
+</body>
+</html>
